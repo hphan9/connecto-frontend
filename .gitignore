@@ -144,3 +144,8 @@ dist
 stats.html
 
 .eslintcache
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*
