@@ -6,14 +6,13 @@ import { FaTrash } from "react-icons/fa";
 import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  QueryClient,
   useMutation,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import LoadingSpinner from "./LoadingSpinner";
-import { formatPostDate, formatMemberSinceDate } from "../../utils/date";
+import { formatPostDate } from "../../utils/date";
 
 interface User {
   _id: string;
@@ -51,7 +50,6 @@ const Post = (post: PostModel) => {
   const {
     mutate: deletePost,
     isPending,
-    error,
   } = useMutation({
     mutationFn: async () => {
       try {
@@ -78,7 +76,6 @@ const Post = (post: PostModel) => {
   const {
     mutate: likePost,
     isPending: isLiking,
-    error: likeError,
   } = useMutation({
     mutationFn: async () => {
       try {
@@ -114,7 +111,6 @@ const Post = (post: PostModel) => {
   const {
     mutate: commentPost,
     isPending: isCommenting,
-    error: commentError,
   } = useMutation({
     mutationFn: async () => {
       try {
@@ -214,9 +210,9 @@ const Post = (post: PostModel) => {
                 className="flex gap-1 items-center cursor-pointer group"
                 onClick={() =>
                   // todo: fix type warning
-                  document
-                    .getElementById("comments_modal" + post._id)
-                    .showModal()
+                  (document
+                    .getElementById("comments_modal" + post._id) as HTMLDialogElement)
+                    ?.showModal()
                 }
               >
                 <FaRegComment className="w-4 h-4  text-slate-500 group-hover:text-sky-400" />

@@ -18,7 +18,7 @@ const useUpdateUserProfile = () => {
         }
         return data;
         // todo: fix type error with catch block
-      } catch (error) {
+      } catch (error :any) {
         throw new Error(error);
       }
     },

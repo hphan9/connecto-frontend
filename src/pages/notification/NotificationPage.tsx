@@ -20,7 +20,6 @@ const NotificationPage = () => {
   const {
     data: notifications,
     isLoading,
-    error,
   } = useQuery<Array<Notification>>({
     queryKey: ["notifications"],
     queryFn: async () => {
@@ -39,8 +38,6 @@ const NotificationPage = () => {
   });
   const {
     mutate: DeleteAll,
-    isError,
-    isPending,
   } = useMutation({
     mutationFn: async () => {
       try {
@@ -53,7 +50,7 @@ const NotificationPage = () => {
         }
         return data;
         // todo: fix type error with catch block
-      } catch (error) {
+      } catch (error : any) {
         throw new Error(error);
       }
     },

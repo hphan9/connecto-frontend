@@ -31,8 +31,8 @@ const CreatePost = () => {
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Something wrong");
         return data;
-      } catch (error) {
-        throw new Error(error);
+      } catch (error: any) {
+        throw new Error(error.message);
       }
     },
     onSuccess: () => {

@@ -30,7 +30,6 @@ const Posts = ({ feedType, username, userId }: Props) => {
   const {
     data: posts,
     isLoading,
-    error,
     refetch,
     isRefetching,
   } = useQuery<Array<PostModel>>({
@@ -43,9 +42,9 @@ const Posts = ({ feedType, username, userId }: Props) => {
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Something wrong");
         return data;
-      } catch (error) {
+      } catch (error : any) {
         console.log(error);
-        throw new Error(error);
+        throw new Error(error.message);
       }
     },
   });

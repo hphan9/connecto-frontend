@@ -3,12 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import Posts from "../../components/common/Posts";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton";
 import EditProfileModal from "./EditProfileModal";
-import { POSTS } from "../../utils/db/dummy";
 import { FaArrowLeft } from "react-icons/fa6";
 import { IoCalendarOutline } from "react-icons/io5";
 import { FaLink } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { User } from "../../components/common/Sidebar";
 import { formatMemberSinceDate } from "../../utils/date";
 import useFollow from "../../hooks/useFollow";
@@ -26,7 +25,6 @@ const ProfilePage = () => {
   const {
     data: user,
     isPending,
-    error,
     refetch,
     isRefetching,
   } = useQuery<User>({
@@ -39,7 +37,7 @@ const ProfilePage = () => {
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Something wrong");
         return data;
-      } catch (error) {
+      } catch (error:any) {
         throw new Error(error);
       }
     },
@@ -93,7 +91,7 @@ const ProfilePage = () => {
                 <div className="flex flex-col">
                   <p className="font-bold text-lg">{user?.fullName}</p>
                   <span className="text-sm text-slate-500">
-                    {POSTS?.length} posts
+                    10 posts
                   </span>
                 </div>
               </div>

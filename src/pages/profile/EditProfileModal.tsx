@@ -1,6 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { User } from "../../components/common/Sidebar";
 import useUpdateUserProfile from "../../hooks/useUpdateUserProfile";
 
@@ -55,7 +53,7 @@ const EditProfileModal = ({ authUser }: Props) => {
       <button
         className="btn btn-outline rounded-full btn-sm"
         onClick={() =>
-          document.getElementById("edit_profile_modal").showModal()
+          (document.getElementById("edit_profile_modal") as HTMLDialogElement).showModal()
         }
       >
         Edit profile

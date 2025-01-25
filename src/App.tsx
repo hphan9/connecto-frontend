@@ -15,8 +15,6 @@ function App() {
   const {
     data: authUser,
     isLoading,
-    error,
-    isError,
   } = useQuery({
     //use query key to refer it later
     queryKey: ["authUser"],
@@ -31,8 +29,8 @@ function App() {
         }
         console.log("authUser is here:", data);
         return data;
-      } catch (error) {
-        throw new Error(error);
+      } catch (error : any) {
+        throw new Error(error.message);
       }
     },
     retry: false,

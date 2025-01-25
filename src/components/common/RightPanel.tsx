@@ -9,7 +9,6 @@ const RightPanel = () => {
   const {
     data: suggestedUsers,
     isLoading,
-    error,
   } = useQuery<Array<User>>({
     queryKey: ["suggestedUsers"],
     queryFn: async () => {
@@ -22,7 +21,7 @@ const RightPanel = () => {
         console.log(data);
         if (!res.ok) throw new Error(data.error || "Something wrong");
         return data;
-      } catch (error) {
+      } catch (error:any) {
         throw new Error(error);
       }
     },

@@ -7,7 +7,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
 import { MdDriveFileRenameOutline } from "react-icons/md";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 interface SignupUser {
@@ -43,8 +43,8 @@ const SignUpPage = () => {
         }
         return data;
         // todo: fix type error with catch block
-      } catch (error) {
-        throw new Error(error);
+      } catch (error : any) {
+        throw new Error(error.message);
       }
     },
     onSuccess: () => {

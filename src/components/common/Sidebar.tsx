@@ -6,7 +6,6 @@ import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { MouseEvent } from "react";
 import toast from "react-hot-toast";
 
 export interface User {
@@ -35,15 +34,15 @@ const Sidebar = () => {
         if (!res.ok) {
           throw new Error(data.error || "Something went wrong");
         }
-      } catch (error) {
-        throw new Error(error);
+      } catch (error : any) {
+        throw new Error(error??"");
       }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
     },
     onError: () => {
-      toast.error(error.message);
+      toast.error(error?.message ?? "");
     },
   });
   return (
